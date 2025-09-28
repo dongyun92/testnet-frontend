@@ -30,12 +30,12 @@ export function MarketOverview() {
 
   return (
     <Card className="h-full flex flex-col">
-      <CardHeader className="pb-3">
-        <CardTitle className="text-lg">Market Overview</CardTitle>
+      <CardHeader className="pb-1">
+        <CardTitle className="text-sm font-medium">Market Overview</CardTitle>
       </CardHeader>
-      <CardContent className="flex-1 p-4">
+      <CardContent className="flex-1 p-2">
         <div className="h-full overflow-y-auto">
-          <div className="space-y-2 pr-2">
+          <div className="space-y-1 pr-1">
             {SYMBOLS.map((symbol) => {
               const ticker = tickers[symbol];
               const isSelected = symbol === selectedSymbol;
@@ -44,24 +44,24 @@ export function MarketOverview() {
                 <div
                   key={symbol}
                   onClick={() => setSelectedSymbol(symbol)}
-                  className={`flex items-center justify-between p-3 rounded-lg cursor-pointer transition-colors ${
+                  className={`flex items-center justify-between p-2 rounded cursor-pointer transition-colors ${
                     isSelected 
                       ? 'bg-blue-500/10 border border-blue-500/20' 
                       : 'hover:bg-muted/50'
                   }`}
                 >
                   <div className="flex flex-col">
-                    <span className="font-medium text-sm">{symbol}</span>
+                    <span className="font-medium text-xs">{symbol}</span>
                     <span className="text-xs text-muted-foreground">
                       Vol: {ticker ? formatPrice(ticker.v, 0) : '...'}
                     </span>
                   </div>
                   
                   <div className="flex flex-col items-end">
-                    <span className="font-mono text-sm">
+                    <span className="font-mono text-xs">
                       {ticker ? formatPrice(ticker.c, 2) : '...'}
                     </span>
-                    <span className={`text-xs px-2 py-1 rounded ${
+                    <span className={`text-xs px-1 py-0.5 rounded ${
                       ticker ? getPercentChangeColor(ticker.P) : 'text-gray-500'
                     }`}>
                       {ticker ? formatPercent(ticker.P, 2) : '...'}

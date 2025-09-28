@@ -86,19 +86,19 @@ export function TradeForm() {
   };
 
   return (
-    <Card className="h-full flex flex-col">
-      <CardHeader className="pb-2">
+    <Card className="flex flex-col">
+      <CardHeader className="pb-1">
         <CardTitle className="text-sm font-medium">Place Order</CardTitle>
       </CardHeader>
-      <CardContent className="flex-1 p-4 overflow-y-auto">
-        <form onSubmit={handleSubmit} className="space-y-3 h-full flex flex-col">
-          {/* Order Side Tabs - Compact */}
+      <CardContent className="flex-1 p-2 overflow-y-auto">
+        <form onSubmit={handleSubmit} className="space-y-1 h-full flex flex-col">
+          {/* Order Side Tabs - Ultra Compact */}
           <div className="grid grid-cols-2 gap-1">
             <Button
               type="button"
               variant={orderSide === 'BUY' ? 'default' : 'outline'}
               onClick={() => setOrderSide('BUY')}
-              className={`h-8 text-xs ${orderSide === 'BUY' ? 'bg-green-600 hover:bg-green-700' : ''}`}
+              className={`h-6 text-xs ${orderSide === 'BUY' ? 'bg-green-600 hover:bg-green-700' : ''}`}
             >
               Buy
             </Button>
@@ -106,19 +106,19 @@ export function TradeForm() {
               type="button"
               variant={orderSide === 'SELL' ? 'default' : 'outline'}
               onClick={() => setOrderSide('SELL')}
-              className={`h-8 text-xs ${orderSide === 'SELL' ? 'bg-red-600 hover:bg-red-700' : ''}`}
+              className={`h-6 text-xs ${orderSide === 'SELL' ? 'bg-red-600 hover:bg-red-700' : ''}`}
             >
               Sell
             </Button>
           </div>
 
-          {/* Order Type - Compact 4-Button Grid */}
+          {/* Order Type - Ultra Compact 4-Button Grid */}
           <div className="grid grid-cols-2 gap-1">
             <Button
               type="button"
               variant={orderType === 'LIMIT' ? 'default' : 'outline'}
               onClick={() => setOrderType('LIMIT')}
-              className="h-7 text-xs"
+              className="h-5 text-xs"
             >
               Limit
             </Button>
@@ -126,7 +126,7 @@ export function TradeForm() {
               type="button"
               variant={orderType === 'MARKET' ? 'default' : 'outline'}
               onClick={() => setOrderType('MARKET')}
-              className="h-7 text-xs"
+              className="h-5 text-xs"
             >
               Market
             </Button>
@@ -134,7 +134,7 @@ export function TradeForm() {
               type="button"
               variant={orderType === 'STOP' ? 'default' : 'outline'}
               onClick={() => setOrderType('STOP')}
-              className="h-7 text-xs"
+              className="h-5 text-xs"
             >
               Stop
             </Button>
@@ -142,15 +142,15 @@ export function TradeForm() {
               type="button"
               variant={orderType === 'STOP_MARKET' ? 'default' : 'outline'}
               onClick={() => setOrderType('STOP_MARKET')}
-              className="h-7 text-xs"
+              className="h-5 text-xs"
             >
               Stop Mkt
             </Button>
           </div>
 
-          {/* Stop Price Input (for Stop orders) - Compact */}
+          {/* Stop Price Input (for Stop orders) - Ultra Compact */}
           {(orderType === 'STOP' || orderType === 'STOP_MARKET') && (
-            <div className="space-y-1">
+            <div className="space-y-0.5">
               <label className="text-xs font-medium">Stop Price</label>
               <div className="relative">
                 <Input
@@ -159,7 +159,7 @@ export function TradeForm() {
                   placeholder="0.00"
                   value={stopPrice}
                   onChange={(e) => setStopPrice(e.target.value)}
-                  className="h-8 text-sm pr-12"
+                  className="h-6 text-xs pr-10"
                 />
                 <div className="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-muted-foreground">
                   USDT
@@ -168,9 +168,9 @@ export function TradeForm() {
             </div>
           )}
 
-          {/* Price Input (for Limit orders) - Compact */}
+          {/* Price Input (for Limit orders) - Ultra Compact */}
           {(orderType === 'LIMIT' || orderType === 'STOP') && (
-            <div className="space-y-1">
+            <div className="space-y-0.5">
               <label className="text-xs font-medium">Price</label>
               <div className="relative">
                 <Input
@@ -179,7 +179,7 @@ export function TradeForm() {
                   placeholder="0.00"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
-                  className="h-8 text-sm pr-12"
+                  className="h-6 text-xs pr-10"
                 />
                 <div className="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-muted-foreground">
                   USDT
@@ -192,7 +192,7 @@ export function TradeForm() {
                     type="button"
                     variant="ghost"
                     onClick={() => setPrice(ticker.c)}
-                    className="h-4 p-0 text-xs hover:text-primary"
+                    className="h-3 p-0 text-xs hover:text-primary"
                   >
                     Use
                   </Button>
@@ -201,8 +201,8 @@ export function TradeForm() {
             </div>
           )}
 
-          {/* Quantity Input - Compact */}
-          <div className="space-y-1 flex-1">
+          {/* Quantity Input - Ultra Compact */}
+          <div className="space-y-0.5 flex-1">
             <label className="text-xs font-medium">Quantity</label>
             <div className="relative">
               <Input
@@ -211,14 +211,14 @@ export function TradeForm() {
                 placeholder="0.0000"
                 value={quantity}
                 onChange={(e) => setQuantity(e.target.value)}
-                className="h-8 text-sm pr-12"
+                className="h-6 text-xs pr-10"
               />
               <div className="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-muted-foreground">
                 {selectedSymbol.replace('USDT', '')}
               </div>
             </div>
             
-            {/* Percentage Buttons - Compact */}
+            {/* Percentage Buttons - Ultra Compact */}
             <div className="grid grid-cols-4 gap-1">
               {[25, 50, 75, 100].map((percent) => (
                 <Button
@@ -230,7 +230,7 @@ export function TradeForm() {
                     // For now, just set a placeholder
                     setQuantity((1 * percent / 100).toString());
                   }}
-                  className="h-6 text-xs"
+                  className="h-4 text-xs"
                 >
                   {percent}%
                 </Button>
@@ -238,8 +238,8 @@ export function TradeForm() {
             </div>
           </div>
 
-          {/* Order Summary - Compact */}
-          <div className="space-y-1 pt-2 border-t mt-auto">
+          {/* Order Summary - Ultra Compact */}
+          <div className="space-y-0.5 pt-1 border-t mt-auto">
             <div className="flex justify-between text-xs">
               <span className="text-muted-foreground">Total</span>
               <span className="font-mono font-medium">
@@ -257,7 +257,7 @@ export function TradeForm() {
             )}
           </div>
 
-          {/* Submit Button - Compact */}
+          {/* Submit Button - Ultra Compact */}
           <Button
             type="submit"
             disabled={
@@ -268,7 +268,7 @@ export function TradeForm() {
               isSubmitting ||
               pendingOrders.length > 0
             }
-            className={`w-full h-9 text-sm font-medium ${
+            className={`w-full h-7 text-xs font-medium ${
               orderSide === 'BUY' 
                 ? 'bg-green-600 hover:bg-green-700' 
                 : 'bg-red-600 hover:bg-red-700'
@@ -279,7 +279,7 @@ export function TradeForm() {
              `${orderSide} ${selectedSymbol.replace('USDT', '')}`}
           </Button>
 
-          {/* Risk Warning - Compact */}
+          {/* Risk Warning - Ultra Compact */}
           <div className="text-xs text-muted-foreground text-center opacity-60">
             ⚠️ Testnet trading only
           </div>

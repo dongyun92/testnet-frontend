@@ -59,23 +59,23 @@ export default function TradingDashboard() {
             </div>
             
             {/* Right Column - Trading Controls */}
-            <div className="lg:col-span-1 space-y-4">
+            <div className="lg:col-span-1 space-y-3 max-h-[600px] overflow-y-auto">
               <AccountBalance />
               <TradeForm />
             </div>
           </div>
 
-          {/* Middle Section */}
+          {/* Middle Section - Order Book, Recent Trades, Active Orders */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-            <PositionsPanel />
             <OrderBook />
+            <RecentTrades />
             <ActiveOrders />
           </div>
 
-          {/* Bottom Section */}
+          {/* Bottom Section - Trade History + Positions */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <TradeHistory />
-            <RecentTrades />
+            <PositionsPanel />
           </div>
         </main>
 
