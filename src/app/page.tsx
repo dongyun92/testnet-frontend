@@ -13,6 +13,9 @@ import { PositionsPanel } from '@/components/trading/positions-panel';
 import { RecentTrades } from '@/components/trading/recent-trades';
 import { ConnectionStatus } from '@/components/trading/connection-status';
 import { AccountBalance } from '@/components/trading/account-balance';
+import { PerformanceOverview } from '@/components/trading/performance-overview';
+import { ActivityFeed } from '@/components/trading/activity-feed';
+import { PortfolioAllocation } from '@/components/trading/portfolio-allocation';
 
 export default function TradingDashboard() {
   return (
@@ -60,6 +63,7 @@ export default function TradingDashboard() {
             
             {/* Right Column - Trading Controls */}
             <div className="lg:col-span-1 space-y-3 max-h-[600px] overflow-y-auto">
+              <PerformanceOverview />
               <AccountBalance />
               <TradeForm />
             </div>
@@ -72,9 +76,17 @@ export default function TradingDashboard() {
             <ActiveOrders />
           </div>
 
-          {/* Bottom Section - Trade History + Positions */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <TradeHistory />
+          {/* Bottom Section - Performance Analytics */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+            <ActivityFeed />
+            <PortfolioAllocation />
+            <div className="space-y-6">
+              <TradeHistory />
+            </div>
+          </div>
+          
+          {/* Final Section - Positions */}
+          <div className="grid grid-cols-1 gap-6">
             <PositionsPanel />
           </div>
         </main>
