@@ -62,7 +62,7 @@ export default function TradingDashboard() {
             </div>
             
             {/* Right Column - Trading Controls */}
-            <div className="lg:col-span-1 space-y-3 max-h-[600px] overflow-y-auto">
+            <div className="lg:col-span-1 space-y-3 max-h-[800px] overflow-y-auto">
               <PerformanceOverview />
               <AccountBalance />
               <TradeForm />
@@ -77,10 +77,10 @@ export default function TradingDashboard() {
           </div>
 
           {/* Bottom Section - Performance Analytics */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-6">
             <ActivityFeed />
             <PortfolioAllocation />
-            <div className="space-y-6">
+            <div className="lg:col-span-2 space-y-6">
               <TradeHistory />
             </div>
           </div>

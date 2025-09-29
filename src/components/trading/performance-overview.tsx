@@ -48,51 +48,18 @@ export function PerformanceOverview() {
   useEffect(() => {
     const fetchPerformanceData = async () => {
       try {
-        // 실제 계정 정보 가져오기
-        const accountResponse = await fetch('http://localhost:8004/api/v1/account');
-        const accountData = await accountResponse.json();
+        // 새로운 성과 메트릭 API 사용
+        const response = await fetch('http://localhost:8004/api/v1/performance/metrics');
+        const result = await response.json();
         
-        // 거래 기록 가져오기
-        const tradesResponse = await fetch('http://localhost:8004/api/v1/trades');
-        const tradesData = await tradesResponse.json();
-        
-        // 포지션 정보 가져오기
-        const positionsResponse = await fetch('http://localhost:8004/api/v1/positions');
-        const positionsData = await positionsResponse.json();
-
-        if (accountData.data) {
-          const totalValue = parseFloat(accountData.data.totalWalletBalance || '0');
-          const unrealizedPnL = parseFloat(accountData.data.totalUnrealizedProfit || '0');
-          
-          // 거래 통계 계산
-          const trades = tradesData.data || [];
-          const totalTrades = trades.length;
-          const winningTrades = trades.filter((trade: any) => trade.realizedPnl > 0).length;
-          const winRate = totalTrades > 0 ? (winningTrades / totalTrades) * 100 : 0;
-          
-          // 일일 손익 계산 (오늘 거래된 것들)
-          const today = new Date().toISOString().split('T')[0];
-          const todayTrades = trades.filter((trade: any) => 
-            trade.time && trade.time.startsWith(today)
-          );
-          const dailyPnL = todayTrades.reduce((sum: number, trade: any) => 
-            sum + (parseFloat(trade.realizedPnl || '0')), 0
-          );
-
-          // 총 실현 손익 계산
-          const totalRealizedPnL = trades.reduce((sum: number, trade: any) => 
-            sum + (parseFloat(trade.realizedPnl || '0')), 0
-          );
-
-          const activeTrades = positionsData.data ? positionsData.data.length : 0;
-
+        if (result.data) {
           setMetrics({
-            totalPnL: totalRealizedPnL + unrealizedPnL,
-            dailyPnL: dailyPnL,
-            totalTrades: totalTrades,
-            winRate: winRate,
-            portfolioValue: totalValue,
-            activeTrades: activeTrades
+            totalPnL: parseFloat(result.data.totalPnL || '0'),
+            dailyPnL: parseFloat(result.data.dailyPnL || '0'),
+            totalTrades: result.data.totalTrades || 0,
+            winRate: parseFloat(result.data.winRate || '0'),
+            portfolioValue: parseFloat(result.data.portfolioValue || '0'),
+            activeTrades: result.data.activeTrades || 0
           });
         }
       } catch (error) {

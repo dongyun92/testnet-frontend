@@ -116,7 +116,7 @@ export function ActivityFeed() {
         </div>
       </CardHeader>
       <CardContent className="p-3">
-        <div className="max-h-[300px] overflow-y-auto">
+        <div className="max-h-[700px] overflow-y-auto">
           <div className="space-y-2">
             {activities.length === 0 ? (
               <div className="text-center text-sm text-muted-foreground py-4">

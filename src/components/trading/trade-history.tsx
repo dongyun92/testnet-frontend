@@ -98,8 +98,8 @@ export function TradeHistory() {
                 <TableBody>
                   {displayTrades
                     .sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0)) // Sort by newest first
-                    .map((trade) => (
-                    <TableRow key={`${trade.orderId}-${trade.timestamp}`} className="hover:bg-muted/50 transition-colors">
+                    .map((trade, index) => (
+                    <TableRow key={`${trade.orderId}-${trade.timestamp}-${index}`} className="hover:bg-muted/50 transition-colors">
                       <TableCell className="text-sm text-muted-foreground w-[18%] p-3">
                         {formatTime(trade.timestamp || Date.now())}
                       </TableCell>
